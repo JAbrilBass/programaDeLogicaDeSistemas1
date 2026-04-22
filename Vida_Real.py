@@ -3,12 +3,34 @@
 # Joan Mauricio Gutérrez Abril
 def salidaAComer():     #Se define la función para calcular el pago de una cuenta en un restaurante, incluyendo la propina.
 
-    print("------------------------------------")
+    print("=====================================")
     print("Hora de pagar la cuenta")        # Se muestra un mensaje indicando que es hora de pagar la cuenta.
-    print("------------------------------------")
+    print("=====================================")
+
+    pedidos = {}
+    personas = int(input("Cuantas personas salieron a comer? "))    # Se solicita al usuario que ingrese el número de personas que salieron a comer y se almacena en la variable 'personas'.
+
+    for i in range(personas):   # Se utiliza un bucle for para solicitar al usuario que ingrese el nombre y el precio de cada pedido. El bucle se ejecuta 3 veces, permitiendo ingresar 3 pedidos.
+        nombre = input(f"Ingresa el nombre de la persona {i+1}: ")   # Se solicita al usuario que ingrese el nombre de la persona y se almacena en la variable 'nombre'.
+        pedidos[nombre] = []  # Se solicita al usuario que ingrese el precio del pedido de la persona y se almacena en el diccionario 'pedidos' con el nombre como clave y el precio como valor.
+
+        while True:    # Se utiliza un bucle while para permitir al usuario ingresar múltiples precios para cada persona. El bucle se ejecuta hasta que el usuario ingresa "fin".
+            plato = input(f"¿Qué pidió {nombre}? ")
+            pedidos[nombre].append(plato)
+            
+            continuar = input("¿Agregar otro plato? (si/no): ")
+            if continuar.lower() != "si":
+                break
 
 
-    personas = int(input("Cuantas personas salieron a comer? "))    # Se solicita al usuario que ingrese el número de personas que salieron a comer y se convierte a un entero.
+
+
+
+
+    #personas = int(input("Cuantas personas salieron a comer? "))    # Se solicita al usuario que ingrese el número de personas que salieron a comer y se convierte a un entero.
+
+    for persona, comida in pedidos.items():
+    print(f"{persona} pidió: {', '.join(comida)}")
 
     cuentaTotal = float(input("Cual fue el total de la cuenta? "))  # Se solicita al usuario que ingrese el total de la cuenta y se convierte a un número flotante.
 
@@ -65,3 +87,5 @@ def iniciadorDeProgramas():   # Se define la función para iniciar el programa.
 
     if eleccion == "1":   # Se verifica si la elección del usuario es "1". Si es así, se llama a la función para calcular el pago de una cuenta en un restaurante.
         salidaAComer()
+
+iniciadorDeProgramas()   # Se llama a la función para iniciar el programa.
